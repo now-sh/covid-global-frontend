@@ -28,7 +28,7 @@
               Total Deaths: {{ states.deaths }}
               <br />
               Last Updated on:
-              {{ new Date(countries.updated).toLocaleDateString("en-US") }}
+              {{ new Date(states.updated).toLocaleDateString("en-US") }}
               <br />
               <br />
             </p>
@@ -46,9 +46,6 @@ const url = "https://disease.sh/v3/covid-19/states";
 
 export default {
   name: "States",
-  props: {
-    title: String,
-  },
   data: () => ({
     loading: true,
     data: [],

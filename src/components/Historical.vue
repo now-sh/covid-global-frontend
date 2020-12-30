@@ -55,11 +55,6 @@ export default {
       this.error = error.message;
     }
     this.loading = false;
-  },
-  methods: {
-    FilterPage: function(event) {
-      this.data = event.target.value;
-    }
   }
 };
 setTimeout(() => {}, 5000);

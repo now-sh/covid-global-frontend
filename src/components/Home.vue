@@ -7,7 +7,6 @@
 
       <div v-else>
         <h1 class="text-center mt-5 text-warning">Global Stats</h1>
-
         <h3>
           Total population: {{ this.data.cases }}
           <br />
@@ -19,7 +18,7 @@
           <br />
           <h5>
             Last Updated on:
-            {{ new Date(countries.updated).toLocaleDateString("en-US") }}
+            {{ new Date(this.data.updated).toLocaleDateString("en-US") }}
           </h5>
           <br />
           <br />
@@ -38,32 +37,23 @@ const url = "https://disease.sh/v3/covid-19/all";
 
 export default {
   name: "Home",
-
   data: () => ({
     loading: true,
-
     data: [],
-
     error: ""
   }),
-
   async created() {
     this.loading = true;
-
     try {
       const response = await fetch(url);
-
       const json = await response.json();
-
       this.data = json;
     } catch (error) {
       this.error = error.message;
     }
-
     this.loading = false;
   }
 };
-
 setTimeout(() => {}, 5000);
 </script>
 
