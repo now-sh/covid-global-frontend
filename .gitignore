@@ -117,3 +117,5 @@ yarn-error.log
 .now
 # End of https://www.gitignore.io/api/node,vuejs
 
+
+.vercel
