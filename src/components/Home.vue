@@ -18,7 +18,7 @@
           <br />
           <h5>
             Last Updated on:
-            {{ new Date(this.data.updated).toLocaleDateString("en-US") }}
+            {{ new Date(this.data.updated).toLocaleString("en-US") }}
           </h5>
           <br />
           <br />
@@ -29,6 +29,8 @@
     </div>
 
     <h2 class="text-success" v-else>Please wait.....<br />Loading data...</h2>
+    <br /><br />
+    <h3>data API: {{ url }}</h3>
   </div>
 </template>
 
@@ -40,7 +42,8 @@ export default {
   data: () => ({
     loading: true,
     data: [],
-    error: ""
+    error: "",
+    url: url
   }),
   async created() {
     this.loading = true;

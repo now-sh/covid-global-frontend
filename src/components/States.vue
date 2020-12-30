@@ -28,7 +28,7 @@
               Total Deaths: {{ states.deaths }}
               <br />
               Last Updated on:
-              {{ new Date(states.updated).toLocaleDateString("en-US") }}
+              {{ new Date(states.updated).toLocaleString("en-US") }}
               <br />
               <br />
             </p>
@@ -38,6 +38,8 @@
       </div>
     </div>
     <h2 v-else class="text-success">Please wait.....<br />Loading data...</h2>
+    <br /><br />
+    <h3>data API: {{ url }}</h3>
   </div>
 </template>
 
@@ -50,6 +52,7 @@ export default {
     loading: true,
     data: [],
     error: "",
+    url: url,
   }),
   async created() {
     this.loading = true;

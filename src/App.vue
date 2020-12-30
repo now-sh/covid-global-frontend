@@ -87,8 +87,15 @@
         <div class="purple-gradient text-center">
           This is an open source project
           <br />
-          <br />
           <a
+            href="https://github.com/now-sh/covid-global-frontend"
+            target="_blank"
+            rel="noopener"
+            class="text-info"
+            >Project source</a
+          >
+          <br /><br /><br />
+          <!-- <a
             href="https://discordapp.com/invite/z2wS84v"
             class="btn btn-success"
             rel="noopener noreferrer nofollow"
@@ -96,7 +103,7 @@
             >Support</a
           >
           <br />
-          <br />
+          <br /> -->
           <br />
           <br />
         </div>
