@@ -39,7 +39,14 @@
     </div>
     <h2 v-else class="text-success">Please wait.....<br />Loading data...</h2>
     <br /><br />
-    <h3><a href="{ url }}">API: States</a></h3>
+    <h3>
+      <a
+        href="https://disease.sh/v3/covid-19/states"
+        rel="noopener noreferrer nofollow"
+        target="_blank"
+        >API: States</a
+      >
+    </h3>
   </div>
 </template>
 

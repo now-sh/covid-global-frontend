@@ -42,7 +42,14 @@
     </div>
     <h2 class="text-success" v-else>Please wait.....<br />Loading data...</h2>
     <br /><br />
-    <h3><a href="{ url }}">API: Countries</a></h3>
+    <h3>
+      <a
+        href="https://disease.sh/v3/covid-19/countries"
+        rel="noopener noreferrer nofollow"
+        target="_blank"
+        >API: Countries</a
+      >
+    </h3>
   </div>
 </template>
 
