@@ -7,9 +7,9 @@
       <div v-else>
         <h1 class="text-center mt-5 text-warning">Historical Data</h1>
 
-        <div class="row border border-primary" v-if="data && data.length">
+        <div class="row " v-if="data && data.length">
           <div
-            class="card text-center col-4 border border-danger"
+            class="card text-center col-md-auto border border-danger"
             v-for="historical in this.data"
             :key="historical.province"
           >
@@ -33,7 +33,7 @@
     </div>
     <h2 class="text-success" v-else>Please wait.....<br />Loading data...</h2>
     <br /><br />
-    <h3>data API: {{ url }}</h3>
+    <h3><a href="{ url }}">API: Historical</a></h3>
   </div>
 </template>
 

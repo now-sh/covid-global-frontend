@@ -8,13 +8,20 @@
       <div v-else>
         <h1 class="text-center mt-5 text-warning">Global Stats</h1>
         <h3>
-          Total population: {{ this.data.cases }}
+          Total population: {{ this.data.population }}
           <br />
           Total cases: {{ this.data.cases }}
           <br />
           Total Recovered: {{ this.data.recovered }}
           <br />
           Total Deaths: {{ this.data.deaths }}
+          <br />
+          Total Tests: {{ this.data.tests }}
+          <br />
+          Total Cases Today: {{ this.data.todayCases }}
+          <br />
+          Total Deaths Today: {{ this.data.todayDeaths }}
+          <br />
           <br />
           <h5>
             Last Updated on:
@@ -30,7 +37,7 @@
 
     <h2 class="text-success" v-else>Please wait.....<br />Loading data...</h2>
     <br /><br />
-    <h3>data API: {{ url }}</h3>
+    <h3><a href="{ url }}">API: All</a></h3>
   </div>
 </template>
 

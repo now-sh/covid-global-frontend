@@ -7,9 +7,9 @@
       </div>
       <div v-else>
         <h1 class="text-center mt-5 text-warning">State Data</h1>
-        <div class="row border border-primary" v-if="data && data.length">
+        <div class="row justify-content-md-center" v-if="data && data.length">
           <div
-            class="card text-center col-4 border border-danger"
+            class="card text-center col-md-auto border border-danger"
             v-for="states in this.data"
             :key="states"
           >
@@ -39,7 +39,7 @@
     </div>
     <h2 v-else class="text-success">Please wait.....<br />Loading data...</h2>
     <br /><br />
-    <h3>data API: {{ url }}</h3>
+    <h3><a href="{ url }}">API: States</a></h3>
   </div>
 </template>
 
@@ -52,7 +52,7 @@ export default {
     loading: true,
     data: [],
     error: "",
-    url: url,
+    url: url
   }),
   async created() {
     this.loading = true;
@@ -64,7 +64,7 @@ export default {
       this.error = error.message;
     }
     this.loading = false;
-  },
+  }
 };
 setTimeout(() => {}, 5000);
 </script>
