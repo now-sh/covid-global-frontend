@@ -7,9 +7,12 @@
       </div>
       <div v-else>
         <h1 class="text-center mt-5 text-warning">State Data</h1>
-        <div class="row justify-content-md-center" v-if="data && data.length">
+        <div
+          class="row justify-content-center align-items-center"
+          v-if="data && data.length"
+        >
           <div
-            class="card text-center col-md-auto border border-danger"
+            class="card text-center col-md-4 border border-danger"
             v-for="states in this.data"
             :key="states"
           >

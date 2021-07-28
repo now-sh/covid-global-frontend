@@ -5,7 +5,7 @@
         <h2 class="error">Error: {{ error }}</h2>
       </div>
 
-      <div v-else>
+      <div class="text-center" v-else>
         <h1 class="text-center mt-5 text-warning">Global Stats</h1>
         <h3>
           Total population: {{ this.data.population }}

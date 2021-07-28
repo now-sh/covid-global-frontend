@@ -7,9 +7,12 @@
       </div>
       <div v-else>
         <h1 class="text-center mt-5 text-warning">Global Data</h1>
-        <div class="row " v-if="data && data.length">
+        <div
+          class="row justify-content-center align-items-center"
+          v-if="data && data.length"
+        >
           <div
-            class="card text-center col-md-auto border border-danger"
+            class="card text-center col-md-4 border border-danger"
             v-for="countries in this.data"
             :key="countries"
           >
