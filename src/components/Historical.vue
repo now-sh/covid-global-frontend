@@ -32,7 +32,7 @@
       </div>
     </div>
     <h2 class="text-success" v-else>Please wait.....<br />Loading data...</h2>
-    <br /><br />
+    <br />
     <h3>
       <a
         href="https://disease.sh/v3/covid-19/historical"
