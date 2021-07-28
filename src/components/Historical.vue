@@ -12,7 +12,7 @@
           v-if="data && data.length"
         >
           <div
-            class="card text-center col-md-4 border border-danger"
+            class="card text-center col-lg-4 border border-danger"
             v-for="historical in this.data"
             :key="historical.province"
           >
