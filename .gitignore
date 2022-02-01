@@ -121,4 +121,5 @@ yarn-error.log
 # End of https://www.gitignore.io/api/node,vuejs
 
 
-.vercel
+.vercel# ignore commit message
+.gitcommit
