@@ -2,7 +2,7 @@
   "name": "Covid-19-Stats",
   "version": "1.0.0",
   "description": "A Covid-19 Tracker",
-  "author": "Jason Hempstead <git-admin@casjaysdev.com>",
+  "author": "Jason Hempstead <git-admin@casjaysdev.pro>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
