@@ -45,7 +45,7 @@
                 variant="primary"
                 rel="noopener noreferrer nofollow"
                 target="_blank"
-                href="https://nys.casjay.now.sh/"
+                href="https://nys.casjay.coffee/"
                 >NYS
               </b-button>
             </li>
@@ -54,7 +54,7 @@
                 variant="primary"
                 rel="noopener noreferrer nofollow"
                 target="_blank"
-                href="https://wherescovid.casjay.now.sh/"
+                href="https://wherescovid.casjay.coffee/"
                 >WheresCovid
               </b-button>
             </li>
