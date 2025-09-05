@@ -9,7 +9,11 @@
         </div>
       </div>
       <div v-else>
-        <h1 class="text-center mt-5 text-warning">Countries Data</h1>
+        <h1 class="text-center mt-5 text-warning">
+          <span role="img" aria-label="Medical symbols">😷 🏥 🦠 🧫</span>
+          <br />
+          Countries Data
+        </h1>
 
         <div class="row mb-4 justify-content-center">
           <div class="col-12 col-sm-10 col-md-8 col-lg-6">
