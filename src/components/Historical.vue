@@ -9,7 +9,11 @@
         </div>
       </div>
       <div v-else>
-        <h1 class="text-center mt-5 text-warning">Historical Data (Last 30 Days)</h1>
+        <h1 class="text-center mt-5 text-warning">
+          <span role="img" aria-label="Medical symbols">😷 🏥 🦠 🧫</span>
+          <br />
+          Historical Data (Last 30 Days)
+        </h1>
         <div class="alert alert-info text-center mb-4">
           <small>
             <strong>Note:</strong> Historical COVID-19 data may be limited or outdated as many countries 
