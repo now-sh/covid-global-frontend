@@ -125,7 +125,12 @@
       "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
       "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
       "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
-      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)"
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
+      "Read(/home/jason/Projects/github/now-sh/wherescovid/**)",
+      "Read(/home/jason/Projects/github/now-sh/wherescovid/**)",
+      "Read(/home/jason/Projects/github/now-sh/wherescovid/src/**)",
+      "Read(/home/jason/Projects/github/now-sh/wherescovid/src/**)",
+      "Bash(timeout 5 npm run dev)"
     ],
     "deny": [],
     "ask": []
