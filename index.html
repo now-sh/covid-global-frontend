@@ -2,12 +2,86 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Covid-19 Stats</title>
-    <meta name="description" content="COVID-19 Global Statistics Dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Primary Meta Tags -->
+    <title>COVID-19 Global Statistics Dashboard</title>
+    <meta name="title" content="COVID-19 Global Statistics Dashboard" />
+    <meta name="description" content="Real-time COVID-19 statistics for global, country-specific, and US state data. Track cases, deaths, recoveries, and historical trends with an accessible, mobile-first interface." />
+    <meta name="keywords" content="COVID-19, coronavirus, statistics, global data, pandemic, health, cases, deaths, recovery, dashboard" />
+    <meta name="author" content="Jason M. Hempstead (Casjay)" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://covid.casjay.coffee/" />
+    <meta property="og:title" content="COVID-19 Global Statistics Dashboard" />
+    <meta property="og:description" content="Real-time COVID-19 statistics for global, country-specific, and US state data. Track cases, deaths, recoveries, and historical trends." />
+    <meta property="og:site_name" content="COVID-19 Stats" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://covid.casjay.coffee/" />
+    <meta property="twitter:title" content="COVID-19 Global Statistics Dashboard" />
+    <meta property="twitter:description" content="Real-time COVID-19 statistics for global, country-specific, and US state data." />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#bd93f9" />
+    <meta name="msapplication-TileColor" content="#282a36" />
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//disease.sh" />
+    <link rel="preconnect" href="https://disease.sh" crossorigin />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://disease.sh; font-src 'self' data:;" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
+    <!-- Accessibility -->
+    <meta name="color-scheme" content="dark" />
+    
+    <!-- Performance Hints -->
+    <link rel="preload" href="/src/main.js" as="script" crossorigin />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "COVID-19 Global Statistics Dashboard",
+      "description": "Real-time COVID-19 statistics dashboard with global, country-specific, and US state data",
+      "url": "https://covid.casjay.coffee/",
+      "author": {
+        "@type": "Person",
+        "name": "Jason M. Hempstead",
+        "url": "https://github.com/casjay"
+      },
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Any"
+    }
+    </script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app" role="main"></div>
     <script type="module" src="/src/main.js"></script>
+    
+    <!-- No JS Fallback -->
+    <noscript>
+      <div style="text-align: center; padding: 2rem; background: #282a36; color: #f8f8f2; font-family: sans-serif;">
+        <h1>JavaScript Required</h1>
+        <p>This application requires JavaScript to display COVID-19 statistics.</p>
+        <p>Please enable JavaScript in your browser and refresh the page.</p>
+        <p><a href="https://disease.sh/v3/covid-19/all" style="color: #8be9fd;">View Raw API Data</a></p>
+      </div>
+    </noscript>
   </body>
 </html>
