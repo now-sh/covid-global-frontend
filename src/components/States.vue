@@ -9,7 +9,11 @@
         </div>
       </div>
       <div v-else>
-        <h1 class="text-center mt-5 text-warning">US States Data</h1>
+        <h1 class="text-center mt-5 text-warning">
+          <span role="img" aria-label="Medical symbols">😷 🏥 🦠 🧫</span>
+          <br />
+          US States Data
+        </h1>
 
         <div class="row mb-4">
           <div class="col-md-6 offset-md-3">
