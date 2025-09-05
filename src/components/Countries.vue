@@ -11,24 +11,28 @@
       <div v-else>
         <h1 class="text-center mt-5 text-warning">Countries Data</h1>
 
-        <div class="row mb-4">
-          <div class="col-md-6 offset-md-3">
+        <div class="row mb-4 justify-content-center">
+          <div class="col-12 col-sm-10 col-md-8 col-lg-6">
             <input
               v-model="searchTerm"
               type="text"
-              class="form-control form-control-lg bg-dark text-light border-secondary"
+              class="form-control form-control-lg"
               placeholder="Search countries..."
+              aria-label="Search countries by name"
             />
           </div>
         </div>
 
-        <div v-if="filteredData && filteredData.length" class="row g-4">
+        <div v-if="filteredData && filteredData.length" class="row g-3 g-md-4">
           <div
             v-for="country in filteredData"
             :key="country.countryInfo._id || country.country"
-            class="col-lg-4 col-md-6"
+            class="col-12 col-sm-6 col-lg-4 col-xl-3"
           >
-            <div class="card bg-dark border-warning text-light h-100">
+            <article
+class="card bg-dark border-warning text-light h-100" 
+                     role="article" 
+                     :aria-label="`COVID-19 statistics for ${country.country}`">
               <div class="card-body">
                 <h5 class="card-title d-flex align-items-center justify-content-center gap-2">
                   <img
@@ -62,7 +66,7 @@
                 <hr class="border-secondary" />
                 <small class="text-muted"> Updated: {{ formatDate(country.updated) }} </small>
               </div>
-            </div>
+            </article>
           </div>
         </div>
 
