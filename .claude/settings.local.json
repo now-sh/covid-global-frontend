@@ -110,7 +110,11 @@
       "Bash(timeout 10 npm run dev)",
       "Bash(npm info:*)",
       "Bash(npm run type-check:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)"
     ],
     "deny": [],
     "ask": []
