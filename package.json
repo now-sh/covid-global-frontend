@@ -1,5 +1,5 @@
 {
-  "name": "Covid-19-Stats",
+  "name": "covid19-frontend",
   "version": "2.0.0",
   "description": "A Covid-19 Tracker - Modernized Vue 3 Application",
   "author": "Jason Hempstead <git-admin@casjaysdev.pro>",
@@ -12,7 +12,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "deploy": "gitcommit deploy && vite build && vercel && vercel --prod"
   },
   "dependencies": {
     "axios": "^1.7.9",
