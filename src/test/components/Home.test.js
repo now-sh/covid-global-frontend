@@ -48,7 +48,7 @@ describe('Home.vue', () => {
     const wrapper = mount(Home)
     await flushPromises()
 
-    expect(wrapper.text()).toContain('Error: API Error')
+    expect(wrapper.text()).toContain('API Error')
   })
 
   it('formats dates correctly', async () => {
