@@ -132,7 +132,10 @@
       "Read(/home/jason/Projects/github/now-sh/wherescovid/src/**)",
       "Bash(timeout 5 npm run dev)",
       "Bash(timeout 3 npm run dev)",
-      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)"
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
+      "WebSearch",
+      "WebFetch(domain:covidactnow.org)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []
