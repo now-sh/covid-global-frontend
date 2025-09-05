@@ -114,7 +114,12 @@
       "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
       "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
       "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
-      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)"
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/src/**)",
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/src/views/**)",
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/**)",
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/src/**)",
+      "Read(/home/jason/Projects/github/now-sh/covid-nys-frontend/src/**)"
     ],
     "deny": [],
     "ask": []
