@@ -26,6 +26,8 @@
     <div v-else class="data-container">
       <header class="page-header text-center">
         <h1 id="global-stats-heading" class="page-title">
+          <span role="img" aria-label="Medical symbols">😷 🏥 🦠 🧫</span>
+          <br />
           Global COVID-19 Statistics
         </h1>
         <div class="alert alert-info">
