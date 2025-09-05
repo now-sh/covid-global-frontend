@@ -1,96 +1,187 @@
-/* eslint-disable vue/valid-v-else */
 <template>
   <div class="countries text-center">
-    <div class="container" v-if="!loading">
+    <div v-if="!loading" class="container">
       <div v-if="error">
-        <h2 class="error">Error: {{ error }}</h2>
+        <div class="alert alert-danger" role="alert">
+          <h4>Error loading data</h4>
+          <p>{{ error }}</p>
+          <button class="btn btn-outline-danger btn-sm" @click="fetchData">Retry</button>
+        </div>
       </div>
       <div v-else>
-        <h1 class="text-center mt-5 text-warning">Global Data</h1>
-        <div
-          class="row justify-content-center align-items-center"
-          v-if="data && data.length"
-        >
-          <div
-            class="card text-center col-lg-4 border border-danger"
-            v-for="countries in this.data"
-            :key="countries"
-          >
-            <h5 class="card-title mt-2">
-              <img
-                :alt="countries"
-                height="32"
-                width="32"
-                :src="countries.countryInfo.flag"
-              />
-              {{ countries.country }}
-            </h5>
-            <p class="card-text mt-2 bt-3">
-              Total cases: {{ countries.cases }}
-              <br />
-              TotalRecovered: {{ countries.recovered }}
-              <br />
-              NewCases: {{ countries.todayCases }}
-              <br />
-              TotalDeaths: {{ countries.deaths }}
-              <br />
-              Last Updated on:
-              {{ new Date(countries.updated).toLocaleString("en-US") }}
-              <br /><br />
-            </p>
+        <h1 class="text-center mt-5 text-warning">Countries Data</h1>
+
+        <div class="row mb-4">
+          <div class="col-md-6 offset-md-3">
+            <input
+              v-model="searchTerm"
+              type="text"
+              class="form-control form-control-lg bg-dark text-light border-secondary"
+              placeholder="Search countries..."
+            />
           </div>
         </div>
-        <h1 class="text-danger" v-else>No data!<br />Failed to load page!</h1>
+
+        <div v-if="filteredData && filteredData.length" class="row g-4">
+          <div
+            v-for="country in filteredData"
+            :key="country.countryInfo._id || country.country"
+            class="col-lg-4 col-md-6"
+          >
+            <div class="card bg-dark border-warning text-light h-100">
+              <div class="card-body">
+                <h5 class="card-title d-flex align-items-center justify-content-center gap-2">
+                  <img
+                    :alt="`${country.country} flag`"
+                    height="32"
+                    width="32"
+                    :src="country.countryInfo.flag"
+                    class="rounded"
+                    loading="lazy"
+                  />
+                  {{ country.country }}
+                </h5>
+                <div class="row text-start">
+                  <div class="col-6">
+                    <small class="text-info">Cases</small>
+                    <div class="fs-6 fw-bold">{{ formatNumber(country.cases) }}</div>
+                  </div>
+                  <div class="col-6">
+                    <small class="text-success">Recovered</small>
+                    <div class="fs-6 fw-bold">{{ formatNumber(country.recovered) }}</div>
+                  </div>
+                  <div class="col-6">
+                    <small class="text-warning">New Cases</small>
+                    <div class="fs-6 fw-bold">+{{ formatNumber(country.todayCases) }}</div>
+                  </div>
+                  <div class="col-6">
+                    <small class="text-danger">Deaths</small>
+                    <div class="fs-6 fw-bold">{{ formatNumber(country.deaths) }}</div>
+                  </div>
+                </div>
+                <hr class="border-secondary" />
+                <small class="text-muted"> Updated: {{ formatDate(country.updated) }} </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div v-else-if="searchTerm" class="alert alert-info">
+          No countries found matching "{{ searchTerm }}"
+        </div>
+
+        <div v-else class="alert alert-warning">No country data available</div>
       </div>
     </div>
-    <h2 class="text-success" v-else>Please wait.....<br />Loading data...</h2>
-    <br />
-    <h3>
+
+    <div v-else class="text-center">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <h2 class="text-success mt-3">Loading countries data...</h2>
+    </div>
+
+    <div class="text-center mt-4">
       <a
         href="https://disease.sh/v3/covid-19/countries"
         rel="noopener noreferrer nofollow"
         target="_blank"
-        >API: Countries</a
+        class="btn btn-outline-info btn-sm"
       >
-    </h3>
+        View Raw API Data
+      </a>
+    </div>
   </div>
 </template>
 
 <script>
-const url = "https://disease.sh/v3/covid-19/countries";
+import { ref, onMounted, computed } from 'vue'
+
+const API_URL = 'https://disease.sh/v3/covid-19/countries'
 
 export default {
-  name: "Country",
-  data: () => ({
-    loading: true,
-    data: [],
-    error: "",
-    url: url
-  }),
-  async created() {
-    this.loading = true;
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
-      this.data = json;
-    } catch (error) {
-      this.error = error.message;
+  name: 'Countries',
+  setup() {
+    const loading = ref(true)
+    const data = ref([])
+    const error = ref('')
+    const searchTerm = ref('')
+
+    const formatNumber = (num) => {
+      if (!num) return '0'
+      return new Intl.NumberFormat().format(num)
     }
-    this.loading = false;
-  }
-};
-setTimeout(() => {}, 5000);
+
+    const formatDate = (timestamp) => {
+      if (!timestamp) return 'N/A'
+      return new Date(timestamp).toLocaleDateString('en-US')
+    }
+
+    const filteredData = computed(() => {
+      if (!searchTerm.value) return data.value
+      return data.value.filter((country) =>
+        country.country.toLowerCase().includes(searchTerm.value.toLowerCase())
+      )
+    })
+
+    const fetchData = async () => {
+      loading.value = true
+      error.value = ''
+
+      try {
+        const response = await fetch(API_URL)
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        const json = await response.json()
+        data.value = json
+      } catch (err) {
+        error.value = err.message
+        console.error('Error fetching countries data:', err)
+      } finally {
+        loading.value = false
+      }
+    }
+
+    onMounted(() => {
+      fetchData()
+    })
+
+    return {
+      loading,
+      data,
+      error,
+      searchTerm,
+      filteredData,
+      formatNumber,
+      formatDate,
+      fetchData,
+    }
+  },
+}
 </script>
 
-<style>
+<style scoped>
 .countries {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   margin-top: 60px;
 }
 
+.card {
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
 .error {
-  color: red;
+  color: #dc3545;
 }
 </style>

@@ -1,40 +1,15 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-/* eslint-disable */
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
-import 'bootswatch/dist/darkly/bootstrap.min.css';
-import Vue from 'vue';
-import router from './router';
-import { store } from './store';
-import { LinkPlugin } from 'bootstrap-vue';
+import App from './App.vue'
+import router from './router'
 
-import BootstrapVue from 'bootstrap-vue';
-import IconsPlugin from 'bootstrap-vue';
+const app = createApp(App)
+const pinia = createPinia()
 
-import App from './App';
+app.use(pinia)
+app.use(router)
 
-Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
-Vue.use(LinkPlugin)
-
-Vue.config.productionTip = false;
-
-const app = new Vue({
-  el: '#app',
-  router,
-  store,
-  components: {
-    App,
-  },
-  template: '<App/>',
-  data: {
-
-    },
-  computed: {
-
-  },
-
-  })
-
-app.use(middleware.notFound);
-app.use(middleware.errorHandler);
+app.mount('#app')

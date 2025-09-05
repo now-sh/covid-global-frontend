@@ -1,93 +1,179 @@
-/* eslint-disable vue/valid-v-else */
 <template>
   <div class="container states text-center">
     <div v-if="!loading">
       <div v-if="error">
-        <h2 class="error">Error: {{ error }}</h2>
+        <div class="alert alert-danger" role="alert">
+          <h4>Error loading data</h4>
+          <p>{{ error }}</p>
+          <button class="btn btn-outline-danger btn-sm" @click="fetchData">Retry</button>
+        </div>
       </div>
       <div v-else>
-        <h1 class="text-center mt-5 text-warning">State Data</h1>
-        <div
-          class="row justify-content-center align-items-center"
-          v-if="data && data.length"
-        >
-          <div
-            class="card text-center col-lg-4 border border-danger"
-            v-for="states in this.data"
-            :key="states"
-          >
-            <h5 class="card-title mt-2">{{ states.state }}</h5>
-            <p class="card-text mt-2 bt-3">
-              Total population: {{ states.population }}
-              <br />
-              Total cases: {{ states.cases }}
-              <br />
-              Active Cases: {{ states.active }}
-              <br />
-              New Cases: {{ states.todayCases }}
-              <br />
-              New Deaths: {{ states.todayDeaths }}
-              <br />
-              Total Deaths: {{ states.deaths }}
-              <br />
-              Last Updated on:
-              {{ new Date(states.updated).toLocaleString("en-US") }}
-              <br />
-              <br />
-            </p>
+        <h1 class="text-center mt-5 text-warning">US States Data</h1>
+
+        <div class="row mb-4">
+          <div class="col-md-6 offset-md-3">
+            <input
+              v-model="searchTerm"
+              type="text"
+              class="form-control form-control-lg bg-dark text-light border-secondary"
+              placeholder="Search US states..."
+            />
           </div>
         </div>
-        <h1 class="text-danger" v-else>No data!<br />Failed to load page!</h1>
+
+        <div v-if="filteredData && filteredData.length" class="row g-4">
+          <div v-for="state in filteredData" :key="state.state" class="col-lg-4 col-md-6">
+            <div class="card bg-dark border-primary text-light h-100">
+              <div class="card-body">
+                <h5 class="card-title text-primary">{{ state.state }}</h5>
+                <div class="row text-start g-2">
+                  <div class="col-6">
+                    <small class="text-secondary">Population</small>
+                    <div class="fs-6 fw-bold text-info">{{ formatNumber(state.population) }}</div>
+                  </div>
+                  <div class="col-6">
+                    <small class="text-secondary">Total Cases</small>
+                    <div class="fs-6 fw-bold text-warning">{{ formatNumber(state.cases) }}</div>
+                  </div>
+                  <div class="col-6">
+                    <small class="text-secondary">Cases Per Million</small>
+                    <div class="fs-6 fw-bold text-info">{{ formatNumber(state.casesPerOneMillion) }}</div>
+                  </div>
+                  <div class="col-6">
+                    <small class="text-secondary">Total Deaths</small>
+                    <div class="fs-6 fw-bold text-danger">{{ formatNumber(state.deaths) }}</div>
+                  </div>
+                  <div class="col-12">
+                    <small class="text-secondary">Deaths Per Million</small>
+                    <div class="fs-6 fw-bold text-danger">{{ formatNumber(state.deathsPerOneMillion) }}</div>
+                  </div>
+                </div>
+                <hr class="border-secondary" />
+                <small class="text-muted"> 
+                  Updated: {{ state.updated ? formatDate(state.updated) : 'Data from disease.sh API' }} 
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div v-else-if="searchTerm" class="alert alert-info">
+          No states found matching "{{ searchTerm }}"
+        </div>
+
+        <div v-else class="alert alert-warning">No state data available</div>
       </div>
     </div>
-    <h2 v-else class="text-success">Please wait.....<br />Loading data...</h2>
-    <br />
-    <h3>
+
+    <div v-else class="text-center">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <h2 class="text-success mt-3">Loading US states data...</h2>
+    </div>
+
+    <div class="text-center mt-4">
       <a
         href="https://disease.sh/v3/covid-19/states"
         rel="noopener noreferrer nofollow"
         target="_blank"
-        >API: States</a
+        class="btn btn-outline-info btn-sm"
       >
-    </h3>
+        View Raw API Data
+      </a>
+    </div>
   </div>
 </template>
 
 <script>
-const url = "https://disease.sh/v3/covid-19/states";
+import { ref, onMounted, computed } from 'vue'
+
+const API_URL = 'https://disease.sh/v3/covid-19/states'
 
 export default {
-  name: "States",
-  data: () => ({
-    loading: true,
-    data: [],
-    error: "",
-    url: url
-  }),
-  async created() {
-    this.loading = true;
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
-      this.data = json;
-    } catch (error) {
-      this.error = error.message;
+  name: 'States',
+  setup() {
+    const loading = ref(true)
+    const data = ref([])
+    const error = ref('')
+    const searchTerm = ref('')
+
+    const formatNumber = (num) => {
+      if (!num) return '0'
+      return new Intl.NumberFormat().format(num)
     }
-    this.loading = false;
-  }
-};
-setTimeout(() => {}, 5000);
+
+    const formatDate = (timestamp) => {
+      if (!timestamp) return 'N/A'
+      return new Date(timestamp).toLocaleDateString('en-US')
+    }
+
+    const filteredData = computed(() => {
+      if (!searchTerm.value) return data.value
+      return data.value.filter((state) =>
+        state.state.toLowerCase().includes(searchTerm.value.toLowerCase())
+      )
+    })
+
+    const fetchData = async () => {
+      loading.value = true
+      error.value = ''
+
+      try {
+        const response = await fetch(API_URL)
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        const json = await response.json()
+        data.value = json
+      } catch (err) {
+        error.value = err.message
+        console.error('Error fetching states data:', err)
+      } finally {
+        loading.value = false
+      }
+    }
+
+    onMounted(() => {
+      fetchData()
+    })
+
+    return {
+      loading,
+      data,
+      error,
+      searchTerm,
+      filteredData,
+      formatNumber,
+      formatDate,
+      fetchData,
+    }
+  },
+}
 </script>
 
-<style>
+<style scoped>
 .states {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   margin-top: 60px;
 }
 
+.card {
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
 .error {
-  color: red;
+  color: #dc3545;
 }
 </style>
