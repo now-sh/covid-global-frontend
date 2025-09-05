@@ -1,0 +1,37 @@
+{
+  "name": "COVID-19 Global Statistics Dashboard",
+  "short_name": "COVID-19 Stats",
+  "description": "Real-time COVID-19 statistics for global, country-specific, and US state data",
+  "theme_color": "#bd93f9",
+  "background_color": "#282a36",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "COVID-19 Dashboard Desktop View"
+    },
+    {
+      "src": "/screenshot-narrow.png", 
+      "sizes": "640x1136",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "COVID-19 Dashboard Mobile View"
+    }
+  ],
+  "categories": ["health", "news", "education"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
