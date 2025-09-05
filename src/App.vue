@@ -61,7 +61,7 @@
               <li class="nav-item" role="none">
                 <a
                   class="nav-link external-link"
-                  href="https://nys.casjay.coffee/"
+                  href="https://nys.covid.casjay.coffee/"
                   target="_blank"
                   rel="noopener noreferrer"
                   role="menuitem"
@@ -74,7 +74,7 @@
               <li class="nav-item" role="none">
                 <a
                   class="nav-link external-link"
-                  href="https://wherescovid.casjay.coffee/"
+                  href="https://location.covid.casjay.coffee/"
                   target="_blank"
                   rel="noopener noreferrer"
                   role="menuitem"
